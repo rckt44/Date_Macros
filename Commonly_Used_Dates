@@ -1,0 +1,32 @@
+/*Commonly Used Macros*/
+%let Current_Year =%sysfunc(today(),year4.);
+%let Current_month=%sysfunc(putn(%sysfunc(month(%sysfunc(today()))),z2.));
+
+%let run_month    =%sysfunc(today(),yymmn6.);
+
+
+%let year3    =%sysfunc(putn(&current_year.,.z4..));/*current year*/
+%let year2    =%sysfunc(putn(&current_year.-1,z4.)); /*current year -1*/
+%let year1    =%sysfunc(putn(&current_year.-2,z4.)); /*current year -2*/
+%let year0    =%sysfunc(putn(&current_year.-3,z4.)); /*current year -3*/
+%let year00    =%sysfunc(putn(&current_year.-4,z4.)); /*current year -4*/
+
+
+/******************Change Date Parameters upon Condition*********************/
+
+data _null_;
+month=month(date());
+if month<=3 then do;
+    call symput('year1', "&year0");
+    call symput('year2', "&year1");
+    call symput('year3', "&year2");
+end;
+else if month>3 then do;
+    call symput('year1', "&year0");
+    call symput('year2', "&year1");
+    call symput('year3', "&year2");
+end;
+
+%put &=year3;
+%put &=year2;
+%put &=year1;
