@@ -30,3 +30,12 @@ end;
 %put &=year3;
 %put &=year2;
 %put &=year1;
+/******************************/
+
+data _null_;
+call symput('start',put(intnx('day',today(),-1,'B'),yymmdd10.));
+call symput('mth',mth);
+run;
+
+%let front =%str(%');
+%let back  =%str(%');
