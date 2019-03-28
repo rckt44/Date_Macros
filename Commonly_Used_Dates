@@ -3,6 +3,9 @@
 %let Current_month=%sysfunc(putn(%sysfunc(month(%sysfunc(today()))),z2.));
 
 %let run_month    =%sysfunc(today(),yymmn6.);
+%llet run_month   =%sysfunc(today(),Monyy7.);
+%let  run_mnth    =%sysfunc(intnx(month,%sysfunc(today()),0),Monyy7.);
+%let  run_mnth    =%sysfunc(intnx(month,%sysfunc(today()),+1),Monyy7.);
 
 
 %let year3    =%sysfunc(putn(&current_year.,z4..));/*current year*/
