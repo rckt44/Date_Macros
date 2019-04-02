@@ -42,3 +42,7 @@ run;
 
 %let front =%str(%');
 %let back  =%str(%');
+/****************************/
+%let mnth_prior=2;
+%let dt=%sysfunc(intnx(month,%sysfunc(today()),-&mnth_prior.));
+%let  dt_mnth=%sysfunc(putn(&dt.,yymmn6.));
