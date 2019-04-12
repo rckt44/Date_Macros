@@ -9,6 +9,8 @@ run;
 %put &=mnth_back;
 
 %let run_mnth3=%sysfunc(intnx(month,%sysfunc(today()),- %eval(&mnth_back.)),Monyy7.);
+%let run_mnth2=%sysfunc(intnx(month,%sysfunc(today()),-       &mnth_back.) ,Monyy7.);
+
 %let Current_month=%sysfunc(putn(%sysfunc(month(%sysfunc(today()))),z2.));
 
 %let run_month    =%sysfunc(today(),yymmn6.);
