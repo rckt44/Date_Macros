@@ -27,8 +27,11 @@ run;
 
 
 /******************Change Date Parameters upon Condition*********************/
+%let mnth_back=0;
+%put &=mnth_back;
 
 data _null_;
+month=month(intnx('month',date(),-"&mnth_back."));
 month=month(date());
 if month<=3 then do;
     call symput('year1', "&year0");
