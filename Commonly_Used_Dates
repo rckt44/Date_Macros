@@ -60,3 +60,26 @@ run;
 %let mnth_prior=2;
 %let dt=%sysfunc(intnx(month,%sysfunc(today()),-&mnth_prior.));
 %let  dt_mnth=%sysfunc(putn(&dt.,yymmn6.));
+
+
+
+
+
+/*===================================================================================================================*/
+data _null_;
+  call symput('month',compress(month(today())));
+run;
+
+
+%macro date_parameter/mindelimiter=',';
+data _null_ ;
+    call symput('YOS3', compress(year(today())));    **current year ;   /* 2015 */
+    call symput('YOS2', compress(year(today())-1));  **current year -1; /* 2014 */
+    call symput('YOS1', compress(year(today())-2));  **current year -2; /* 2013 */
+run;
+%mend date_parameter;
+%date_parameter;
+
+%put &month &YOS3 &YOS2 &YOS1; 
+
+/*===================================================================================================================*/
