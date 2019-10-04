@@ -10,6 +10,21 @@ data cc;
 	monthback= put(intnx('month',date(),-1,'m'),yymmddn8.);
 run;
 
+data dd;
+	rm= put(intnx('month',date(),-1,'m'),yymmn6.);
+	rd= put(intnx('month',date(),-1,'m'),yymmddn8.);
+
+run;
+data _null_;
+set dd;
+call symputx('runmonth',rm);
+call symputx('rundate',rd);
+call symputx('mmr_ext',rm);
+run;
+
+%put &runmonth &rundate &mmr_ext;
+
+
 /****************************************************************************************/
 
 /*get numeric month */
