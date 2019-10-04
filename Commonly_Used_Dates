@@ -1,4 +1,17 @@
 /*Commonly Used Macros*/
+
+/*monthback data step*/
+data aa;
+	day  = put(date(),mmddyy10.);
+	monthback= put(intnx('month',date(),-1,'m'),mmddyy10.);
+run;
+data cc;
+	day  = put(date(),yymmddn8.);
+	monthback= put(intnx('month',date(),-1,'m'),yymmddn8.);
+run;
+
+/****************************************************************************************/
+
 /*get numeric month */
 data c;
 mnth=intnx('month',date(),-1);
