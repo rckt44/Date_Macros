@@ -111,3 +111,21 @@ run;
 %put &month &YOS3 &YOS2 &YOS1; 
 
 /*===================================================================================================================*/
+
+
+
+
+%let td="01Jan2020"D;
+%let dt=&td.;
+%*let td=today();
+
+data rolldate;
+	format begin_roll end_roll mmddyy10.;
+	x=intnx('month',&dt.-day(&dt.)+1,-12);
+
+	begin_roll=x;
+	end_roll=&td.;
+
+    rolldate=put(begin_roll,mmddyy10.) ||' to ' || put(end_roll,mmddyy10.);
+run;
+
