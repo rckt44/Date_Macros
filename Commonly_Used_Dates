@@ -128,4 +128,12 @@ data rolldate;
 
     rolldate=put(begin_roll,mmddyy10.) ||' to ' || put(end_roll,mmddyy10.);
 run;
+/*********************************************************************************************/
+%let td=today();
+data _null_;
+if month(&td.) in (1,2,3) then do;
+call symput('year3',"&year2.");
+end;
+run;
+%put Note:New year3 is:&year3. becasue current month is in jan,feb or March;
 
