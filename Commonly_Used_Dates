@@ -137,3 +137,28 @@ end;
 run;
 %put Note:New year3 is:&year3. becasue current month is in jan,feb or March;
 
+/*get rolling one year back or 365 days back from curr run date*/
+%let current_year		 			=%sysfunc(year(%sysfunc(today())));										
+%let current_month 					=%sysfunc(month(%sysfunc(today())));
+
+%let year1 							=%sysfunc(putn(&current_year.-2,z4.));
+%let year2 							=%sysfunc(putn(&current_year.-1,z4.));
+%let year3 							=%sysfunc(putn(&current_year.,z4.));
+
+/** Date for novisit in last 12 months **/
+%let NVBeginDate=intnx('month',date()-day(date())+1,-12);
+%let NVEndDate=date()-day(date());
+
+
+
+data _null_;
+		dttm_temp = compress(put(date(),YYMMDDN8.) || "-" || put(time(),time8.0));
+		dttm_log = tranwrd(dttm_temp, ":", "-");
+		call symput("dttm_log", compress(dttm_log));
+run;
+%put &dttm_log.;
+
+
+
+
+
